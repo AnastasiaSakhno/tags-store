@@ -34,10 +34,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadLinks: (links) => {
-    dispatch(actions.links.loadLinks(links))
+    dispatch(actions.links.load(links))
   },
   addLink: (link) => {
-    dispatch(actions.links.addLink(link))
+    dispatch(actions.links.add(link))
   }
 })
 

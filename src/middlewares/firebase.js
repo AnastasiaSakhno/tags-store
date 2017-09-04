@@ -29,7 +29,7 @@ const firebaseMiddleware = ({ dispatch }) => next => action => {
   if(action.type === actionTypes.LOAD_LINKS) {
     db.ref(linksQueueName).once('value', (snapshot) => {
       const linksInDb = snapshotToArray(snapshot) || []
-      dispatch(actions.links.linksLoaded(linksInDb))
+      dispatch(actions.links.loaded(linksInDb))
     })
   }
 
