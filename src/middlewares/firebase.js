@@ -14,6 +14,7 @@ firebase.initializeApp(config)
 
 const db = firebase.database()
 const linksQueueName = '/links'
+const tagssQueueName = '/tagss'
 
 const snapshotToArray = (snapshot) => {
   const arrayToReturn = []
@@ -26,10 +27,10 @@ const snapshotToArray = (snapshot) => {
 }
 
 const firebaseMiddleware = ({ dispatch }) => next => action => {
+  // links
   if(action.type === actionTypes.LOAD_LINKS) {
     db.ref(linksQueueName).once('value', (snapshot) => {
-      const linksInDb = snapshotToArray(snapshot) || []
-      dispatch(actions.links.loaded(linksInDb))
+      dispatchLoadedAction(dispatch, actions.links.loaded, snapshot)
     })
   }
 
@@ -38,7 +39,24 @@ const firebaseMiddleware = ({ dispatch }) => next => action => {
     link.set(action.link)
   }
 
+  // tags
+  if(action.type === actionTypes.LOAD_TAGS) {
+    db.ref(tagssQueueName).once('value', (snapshot) => {
+      dispatchLoadedAction(dispatch, actions.tags.loaded, snapshot)
+    })
+  }
+
+  if(action.type === actionTypes.ADD_TAG) {
+    const tag = db.ref(tagssQueueName).push()
+    tag.set(action.tag)
+  }
+
   next(action)
+}
+
+const dispatchLoadedAction = (dispatch, action, snapshot) => {
+  const linksInDb = snapshotToArray(snapshot) || []
+  dispatch(action(linksInDb))
 }
 
 export default firebaseMiddleware

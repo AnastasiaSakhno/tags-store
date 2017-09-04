@@ -14,6 +14,7 @@ class LinkForm extends Component {
     if(!url) { return }
 
     this.props.onLinkSubmit({ url: url })
+
     this.urlInput.value = ''
   }
 

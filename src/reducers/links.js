@@ -8,7 +8,7 @@ const links = (state = [], action) => {
   if(action.type === actionTypes.ADD_LINK) {
     return [
       ...state,
-      {...action.link}
+      { ...action.link }
     ]
   }
 

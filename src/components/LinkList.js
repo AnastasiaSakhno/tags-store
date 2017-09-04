@@ -8,11 +8,7 @@ const LinkList = ({ data }) => {
     <Link url={ link.url } key={ index }/>
   ))
 
-  return (
-    <div className="link-list">
-      { linksMap }
-    </div>
-  )
+  return (<div className="link-list">{ linksMap }</div>)
 }
 
 LinkList.propTypes = {

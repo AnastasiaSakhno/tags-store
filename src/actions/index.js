@@ -1,7 +1,8 @@
 import * as links from './links'
+import * as tags from './tags'
 
 const actions = {
-  links
+  links, tags
 }
 
 export default actions

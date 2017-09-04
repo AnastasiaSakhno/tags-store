@@ -21,7 +21,7 @@ class LinkBox extends PureComponent {
     return (
       <div className="link-box">
         <h1>Links</h1>
-        <LinkList data={this.props.links}/>
+        <LinkList data={ this.props.links }/>
         <LinkForm onLinkSubmit={ this.props.addLink }/>
       </div>
     )
