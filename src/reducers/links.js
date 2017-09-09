@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes'
+import * as actionTypes from '../actions/types'
 
 const links = (state = [], action) => {
   if(action.type === actionTypes.LINKS_LOADED) {
