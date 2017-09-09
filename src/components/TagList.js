@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import Tag from './Tag'
 
 const TagList = ({ data }) => {
-  const toRender = data.map((tag, index) => (
-    <Tag name={ tag.name } key={ index }/>
+  const toRender = data.map( (tag, index) => (
+    <Tag name={ tag.name } linkId= { tag.linkId } key={ index }/>
   ))
 
   return (<div className="tag-list">{ toRender }</div>)
@@ -13,6 +13,7 @@ const TagList = ({ data }) => {
 TagList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
+      linkId: PropTypes.string,
       name: PropTypes.string
     })
   ).isRequired
