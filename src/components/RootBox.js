@@ -5,12 +5,7 @@ import TagBox from './TagBox'
 const RootBox = () => {
   return (
     <div className="container">
-      <div className="col-md-6">
-        <LinkBox/>
-      </div>
-      <div className="col-md-6">
-        <TagBox/>
-      </div>
+      <LinkBox/>
     </div>
   )
 }
