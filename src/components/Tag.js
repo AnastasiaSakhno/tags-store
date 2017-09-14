@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Tag = ({ linkId, name }) => {
-  return (<div className="tag">{ name }</div>)
+  return (<span className="tag">{ name }</span>)
 }
 
 Tag.propTypes = {
