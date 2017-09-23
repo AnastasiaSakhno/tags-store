@@ -1,18 +1,19 @@
 import * as actionTypes from '../actions/types'
 
 const tags = (state = [], action) => {
-  if(action.type === actionTypes.TAGS_LOADED) {
-    return [...action.tags]
-  }
+  switch(action.type) {
+    case actionTypes.TAGS_LOADED:
+      return [...action.tags]
 
-  if(action.type === actionTypes.ADD_TAG) {
-    return [
-      ...state,
-      { ...action.tag }
-    ]
-  }
+    case actionTypes.ADD_TAG:
+      return [
+        ...state,
+        { ...action.tag }
+      ]
 
-  return state
+    default:
+      return state
+  }
 }
 
 export default tags
