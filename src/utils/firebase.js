@@ -9,11 +9,14 @@ const config = {
   messagingSenderId: '339559224405'
 }
 
+// TODO: separate with three files: firebase, links, tags
+
 export const initializeFirebase = () => firebase.initializeApp(config)
 
 const db = () => firebase.database()
-const linksQueueName = '/links'
-const tagsQueueName = '/tags'
+const ref = (tableName) => db().ref(tableName)
+const linksTableName = '/links'
+const tagsTableName = '/tags'
 
 export const snapshotToArray = (snapshot) => {
   const arrayToReturn = []
@@ -25,20 +28,35 @@ export const snapshotToArray = (snapshot) => {
   return arrayToReturn
 }
 
-export const getLinks = () => db().ref(linksQueueName).once('value')
+export const getLinks = () => ref(linksTableName).once('value')
 
-export const getTags = (linkId) => {
-  return db().ref(tagsQueueName).orderByChild('linkId').equalTo(linkId).once('value')
+export const getTags = () => ref(tagsTableName).once('value')
+
+export const getTagsFor = (linkId) => {
+  return ref(tagsTableName).orderByChild('linkId').equalTo(linkId).once('value')
 }
 
 export const saveLink = (link) => {
-  const newLink = db().ref(linksQueueName).push()
+  const newLink = ref(linksTableName).push()
   newLink.set(link)
 }
 
 export const saveTags = (link) => {
   link.tags.forEach( (tag) => {
-    const newTag = db().ref(tagsQueueName).push()
-    newTag.set(tag)
+    saveTag(tag)
+  })
+}
+
+export const saveTag = (tag) => {
+  const newTag = ref(tagsTableName).push()
+  newTag.set(tag)
+}
+
+export const destroyTag = (tag) => {
+  ref(tagsTableName).orderByChild('linkId').equalTo(tag.linkId).on('child_added', function(snapshot) {
+    if(snapshot.val().name === tag.name) {
+      ref(tagsTableName).child(snapshot.key).remove()
+      return
+    }
   })
 }
