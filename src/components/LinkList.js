@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Link from './Link'
+import LinkBox from './LinkBox'
 
 const LinkList = ({ data }) => {
   const linksMap = data.map((link) => (
-    <Link name={link.name} url={ link.url } key={ link.id } tags={ link.tags } id={ link.id } />
+    <LinkBox name={link.name} url={ link.url } key={ link.id } tags={ link.tags } id={ link.id } />
   ))
 
   return (<div className="link-list">{ linksMap }</div>)

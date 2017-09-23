@@ -1,11 +1,10 @@
 import React from 'react'
-import LinkBox from './LinkBox'
-import TagBox from './TagBox'
+import LinksContainer from './LinksContainer'
 
 const RootBox = () => {
   return (
     <div className="container">
-      <LinkBox/>
+      <LinksContainer/>
     </div>
   )
 }

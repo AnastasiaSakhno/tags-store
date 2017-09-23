@@ -10,24 +10,28 @@ class TagForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    const name = this.tagInput.value
+    const name = this.tagNameInput.value
     if(!name) {
       return
     }
 
-    this.props.onTagSubmit({ name: name })
+    this.props.onTagSubmit({ name: name, linkId: this.props.linkId })
 
-    this.tagInput.value = ''
+    this.tagNameInput.value = ''
   }
 
   render() {
     return (
       <form className="tag-form" onSubmit={ this.handleSubmit }>
-        <input type="text" placeholder="Tag name" ref={ (el) => { this.tagInput = el } }/>
+        <input type="text" placeholder="Tag name" ref={ (el) => { this.tagNameInput = el } }/>
         <input type="submit" value="Add tag"/>
       </form>
     )
   }
+}
+
+TagForm.propTypes = {
+  linkId: PropTypes.string.isRequired
 }
 
 export default TagForm
