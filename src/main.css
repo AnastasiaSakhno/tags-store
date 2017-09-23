@@ -7,6 +7,15 @@ body {
   padding: 30px;
 }
 
+.link-box {
+  padding-top: 20px;
+}
+
 .tag {
-  padding: 10px
+  padding: 10px;
+}
+
+.iconbutton-box {
+  cursor: pointer;
+  margin-left: 5px;
 }
