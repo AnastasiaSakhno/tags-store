@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import 'babel-polyfill'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import logger from 'redux-logger'
 import { initializeFirebase } from './utils/firebase'
 import sagas from './sagas'
 import reducers from './reducers'
@@ -13,7 +14,7 @@ initializeFirebase()
 
 const sagaMiddleware = createSagaMiddleware()
 
-const store = createStore(reducers, compose(applyMiddleware(sagaMiddleware)))
+const store = createStore(reducers, compose(applyMiddleware(sagaMiddleware, logger)))
 
 sagaMiddleware.run(sagas)
 
