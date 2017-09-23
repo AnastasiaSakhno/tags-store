@@ -13,3 +13,8 @@ export const add = (tag) => ({
   type: actionTypes.ADD_TAG,
   tag
 })
+
+export const remove = (tag) => ({
+  type: actionTypes.REMOVE_TAG,
+  tag
+})
