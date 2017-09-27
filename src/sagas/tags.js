@@ -16,13 +16,12 @@ export function* addTag({ tag }) {
 
 export function* removeTag({ tag }) {
   yield call(destroyTag, tag)
-  // TODO should implement in tags reducer
-  yield call(loadTags)
+  yield put(actions.tags.tagRemoved(tag))
 }
 
 export default function* watchTags() {
   yield[
-    takeEvery(actionTypes.LOAD_TAGS, loadTags),
+    takeLatest(actionTypes.LOAD_TAGS, loadTags),
     takeEvery(actionTypes.ADD_TAG, addTag),
     takeEvery(actionTypes.REMOVE_TAG, removeTag)
   ]

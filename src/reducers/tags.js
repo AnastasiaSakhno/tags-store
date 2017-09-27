@@ -11,6 +11,9 @@ const tags = (state = [], action) => {
         { ...action.tag }
       ]
 
+    case actionTypes.TAG_REMOVED_SUCCESSFULLY:
+      return state.filter( (tag) => { return !(tag.linkId === action.tag.linkId && tag.name === action.tag.name) } )
+
     default:
       return state
   }
