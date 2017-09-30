@@ -9,3 +9,5 @@ export const TAGS_LOADED = 'TAGS_LOADED'
 export const ADD_TAG = 'ADD_TAG'
 export const REMOVE_TAG = 'REMOVE_TAG'
 export const TAG_REMOVED_SUCCESSFULLY = 'TAG_REMOVED_SUCCESSFULLY'
+
+export const TOGGLE_ARCHIVE = 'TOGGLE_ARCHIVE'

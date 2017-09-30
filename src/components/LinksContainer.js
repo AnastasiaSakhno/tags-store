@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import actions from '../actions'
 import LinkList from './LinkList'
 import LinkForm from './LinkForm'
+import selectors from '../selectors'
 
 
 class LinksContainer extends PureComponent {
@@ -21,9 +22,7 @@ class LinksContainer extends PureComponent {
   render() {
     return (
       <div className="links-container">
-        <h3>Link to add</h3>
         <LinkForm onLinkSubmit={ this.props.addLink }/>
-        <h3>Links</h3>
         <LinkList data={ this.props.links } onDestroy={ this.props.removeLink }/>
       </div>
     )
@@ -31,7 +30,7 @@ class LinksContainer extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  links: state.links
+  links: selectors.links.getFiltered(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

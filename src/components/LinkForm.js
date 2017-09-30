@@ -27,12 +27,15 @@ class LinkForm extends Component {
 
   render() {
     return (
-      <form className='link-form' onSubmit={ this.handleSubmit }>
-        <input type='text' placeholder='Link name' ref={ el => { this.nameInput = el } }/>
-        <input type='text' placeholder='Your url' ref={ el => { this.urlInput = el } }/>
-        <input type='text' placeholder='Tags (separate with ",")' ref={ el => { this.tagsInput = el } }/>
-        <input type='submit' value='Add link'/>
-      </form>
+      <div>
+        <legend>Link to add</legend>
+        <form className='link-form' onSubmit={ this.handleSubmit }>
+          <input type='text' placeholder='Link name' ref={ el => { this.nameInput = el } }/>
+          <input type='text' placeholder='Your url' ref={ el => { this.urlInput = el } }/>
+          <input type='text' placeholder='Tags (separate with ",")' ref={ el => { this.tagsInput = el } }/>
+          <input type='submit' value='Add link'/>
+        </form>
+      </div>
     )
   }
 }

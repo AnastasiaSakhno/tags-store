@@ -8,7 +8,12 @@ const LinkList = ({ data, onDestroy }) => {
     <LinkBox name={link.name} url={ link.url } key={ link.id } tags={ link.tags } id={ link.id } onDestroy={ onDestroy } />
   ))
 
-  return (<div className="link-list">{ linksMap }</div>)
+  return (
+    <div className="link-list">
+      <legend>Links</legend>
+      { linksMap }
+    </div>
+  )
 }
 
 LinkList.propTypes = {
