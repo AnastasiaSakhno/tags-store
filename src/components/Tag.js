@@ -5,12 +5,12 @@ import IconButton from './IconButton'
 class Tag extends Component {
 
   static propTypes = {
-    onTagDestroy: PropTypes.func.isRequired
+    onDestroy: PropTypes.func.isRequired
   }
 
   handleDestroy = (e) => {
     e.preventDefault()
-    this.props.onTagDestroy({ linkId: this.props.linkId, name: this.props.name })
+    this.props.onDestroy({ linkId: this.props.linkId, name: this.props.name })
   }
 
   render() {

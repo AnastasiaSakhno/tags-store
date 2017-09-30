@@ -14,7 +14,7 @@ class TagsContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.loadTags(this.props.linkId)
+    this.props.loadTags()
   }
 
   render() {
@@ -25,7 +25,7 @@ class TagsContainer extends Component {
     return (
       <div className="tags-box">
         <TagForm onTagSubmit={ this.props.addTag } linkId={ this.props.linkId }/>
-        <TagList tags={ tags } onTagDestroy={ this.props.removeTag }/>
+        <TagList tags={ tags } onDestroy={ this.props.removeTag }/>
       </div>
     )
   }
