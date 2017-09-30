@@ -19,7 +19,7 @@ export const remove = (tag) => ({
   tag
 })
 
-export const tagRemoved = (tag) => ({
+export const removedSuccessfully = (tag) => ({
   type: actionTypes.TAG_REMOVED_SUCCESSFULLY,
   tag
 })

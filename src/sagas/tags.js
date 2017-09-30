@@ -16,7 +16,7 @@ export function* addTag({ tag }) {
 
 export function* removeTag({ tag }) {
   yield call(destroyTag, tag)
-  yield put(actions.tags.tagRemoved(tag))
+  yield put(actions.tags.removedSuccessfully(tag))
 }
 
 export default function* watchTags() {
