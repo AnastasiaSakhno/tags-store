@@ -8,7 +8,7 @@ const tags = (state = [], action) => {
     case actionTypes.ADD_TAG:
       return [
         ...state,
-        { ...action.tag }
+        action.tag
       ]
 
     case actionTypes.TAG_REMOVED_SUCCESSFULLY:
