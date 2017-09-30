@@ -1,24 +1,24 @@
 import { createSelector } from 'reselect'
 
-const getArchiveFilter = (state) => state.filters.archive
-const getLinks = (state) => state.links
-const getTextFilter = (state) => state.filters.text
+const getState = (state) => state
 
-export const filteredByArchive = createSelector(
-  [getArchiveFilter, getLinks],
-  (archiveFilter, links) => {
-    return archiveFilter ? links : links.filter( (link) => !link.archive )
+export const filtered = createSelector(
+  getState,
+  (state) => {
+    const { links, tags, filters } = state
+    const { text, archive } = filters
+    let filteredLinks = filterByArchive(links, archive)
+    return filterByText(filteredLinks, tags, text)
   }
 )
 
-export const getFiltered = createSelector(
-  [getTextFilter, filteredByArchive],
-  (text, links) => {
-    const regex = new RegExp('.*' + text + '.*', 'gi')
-    return links.filter( (link) => matches(link, regex) )
-  }
-)
 
-const matches = (link, regex) => {
-  return regex.test(link.name) || regex.test(link.url)
+const matches = (entity, regex) => regex.test(entity.name) || regex.test(entity.url)
+
+const filterByArchive = (links, archive) => archive ? links : links.filter( (link) => !link.archive )
+
+const filterByText = (links, tags, text) => {
+  const regex = new RegExp('.*' + text + '.*', 'gi')
+  const linkIdsByTags = tags.filter( (tag) => matches(tag, regex) ).map( (tag) => tag.linkId )
+  return links.filter( (link) => matches(link, regex) || linkIdsByTags.includes(link.id) )
 }

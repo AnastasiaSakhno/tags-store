@@ -30,7 +30,7 @@ class LinksContainer extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  links: selectors.links.getFiltered(state)
+  links: selectors.links.filtered(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
