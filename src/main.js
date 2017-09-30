@@ -9,6 +9,7 @@ import { initializeFirebase } from './utils/firebase'
 import sagas from './sagas'
 import reducers from './reducers'
 import RootBox from './components/RootBox'
+import './main.scss'
 
 initializeFirebase()
 

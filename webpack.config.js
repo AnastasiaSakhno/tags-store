@@ -1,6 +1,10 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].css"
+})
+
 module.exports = {
   entry: './src/main.js',
   output: { path: __dirname + '/build/', filename: 'main.js' },
@@ -12,9 +16,16 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
-        exclude: /node_modules/
+        test: /\.scss$/,
+        loader: extractSass.extract({
+          use: [{
+              loader: "css-loader"
+          }, {
+              loader: "sass-loader"
+          }],
+          // use style-loader in development
+          fallback: "style-loader"
+        })
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -33,13 +44,8 @@ module.exports = {
       {
         from: __dirname + '/src/index.html',
         to: __dirname + '/build/index.html'
-      },
-
-      {
-        from: __dirname + '/src/main.css',
-        to: __dirname + '/build/main.css'
       }
     ]),
-    new ExtractTextPlugin('main.css')
+    extractSass
   ]
 }
