@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import LinkBox from './LinkBox'
 
-const LinkList = ({ data }) => {
+const LinkList = ({ data, onDestroy }) => {
   const linksMap = data.map((link) => (
-    <LinkBox name={link.name} url={ link.url } key={ link.id } tags={ link.tags } id={ link.id } />
+    <LinkBox name={link.name} url={ link.url } key={ link.id } tags={ link.tags } id={ link.id } onDestroy={ onDestroy } />
   ))
 
   return (<div className="link-list">{ linksMap }</div>)

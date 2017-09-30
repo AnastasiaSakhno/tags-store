@@ -60,3 +60,9 @@ export const destroyTag = (tag) => {
     }
   })
 }
+
+export const destroyLink = (link) => {
+  ref(linksTableName).orderByChild('id').equalTo(link.id).once('child_added', function(snapshot) {
+    snapshot.ref.update({ archive: true })
+  })
+}

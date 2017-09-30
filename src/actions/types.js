@@ -1,6 +1,8 @@
 export const LOAD_LINKS = 'LOAD_LINKS'
 export const LINKS_LOADED = 'LINKS_LOADED'
 export const ADD_LINK = 'ADD_LINK'
+export const REMOVE_LINK = 'REMOVE_LINK'
+export const LINK_REMOVED_SUCCESSFULLY = 'LINK_REMOVED_SUCCESSFULLY'
 
 export const LOAD_TAGS = 'LOAD_TAGS'
 export const TAGS_LOADED = 'TAGS_LOADED'

@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import IconButton from './IconButton'
 
-const Link = ({ id, name, url }) => {
+class Link extends Component {
 
-  return (
-    <div className="link">
-      Name: { name }, URL: { url }
-    </div>
-  )
+  static propTypes = {
+    onDestroy: PropTypes.func.isRequired
+  }
+
+  handleDestroy = (e) => {
+    e.preventDefault()
+    this.props.onDestroy({ id: this.props.id })
+  }
+
+  render() {
+    return (
+      <div className="link">
+        Name: { this.props.name }, URL: { this.props.url }
+        <IconButton icon={ 'fa-remove ' } onSubmit={ this.handleDestroy } />
+      </div>
+    )
+  }
 }
 
 Link.propTypes = {

@@ -20,7 +20,7 @@ class LinkForm extends Component {
       return { name: tagName, linkId: id }
     })
 
-    this.props.onLinkSubmit({ id: id, name: name, url: url, tags: tags })
+    this.props.onLinkSubmit({ id: id, name: name, url: url, tags: tags, archive: false })
 
     this.urlInput.value = this.nameInput.value = this.tagsInput.value = ''
   }

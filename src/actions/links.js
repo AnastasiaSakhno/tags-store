@@ -13,3 +13,13 @@ export const add = (link) => ({
   type: actionTypes.ADD_LINK,
   link
 })
+
+export const remove = (link) => ({
+  type: actionTypes.REMOVE_LINK,
+  link
+})
+
+export const removedSuccessfully = (link) => ({
+  type: actionTypes.LINK_REMOVED_SUCCESSFULLY,
+  link
+})
