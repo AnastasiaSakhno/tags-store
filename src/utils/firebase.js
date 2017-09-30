@@ -28,7 +28,7 @@ export const snapshotToArray = (snapshot) => {
   return arrayToReturn
 }
 
-export const getLinks = () => ref(linksTableName).once('value')
+export const getLinks = () => ref(linksTableName).orderByChild('archive').equalTo(false).once('value')
 
 export const getTags = () => ref(tagsTableName).once('value')
 
