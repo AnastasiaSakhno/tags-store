@@ -23,3 +23,18 @@ export const removedSuccessfully = (link) => ({
   type: actionTypes.LINK_REMOVED_SUCCESSFULLY,
   link
 })
+
+export const addTag = (tag) => ({
+  type: actionTypes.ADD_TAG,
+  tag
+})
+
+export const removeTag = (tag) => ({
+  type: actionTypes.REMOVE_TAG,
+  tag
+})
+
+export const tagRemovedSuccessfully = (tag) => ({
+  type: actionTypes.TAG_REMOVED_SUCCESSFULLY,
+  tag
+})

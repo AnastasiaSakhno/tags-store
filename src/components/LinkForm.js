@@ -17,7 +17,7 @@ class LinkForm extends Component {
     const id = uniqId()
     const name = this.nameInput.value.trim()
     const tags = this.tagsInput.value.replace(/ /g, '').split(',').map( (tagName) => {
-      return { name: tagName, linkId: id }
+      return { name: tagName }
     })
 
     this.props.onLinkSubmit({ id: id, name: name, url: url, tags: tags, archive: false })

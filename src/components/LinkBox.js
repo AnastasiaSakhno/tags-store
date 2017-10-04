@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import TagsContainer from './TagsContainer'
 import Link from './Link'
 
-const LinkBox = ({ id, name, url, tags, onDestroy }) => {
+const LinkBox = ({ id, name, url, tags, onDestroy, addTag, removeTag }) => {
   return (
     <div className="link-box">
       <Link id={ id } name={ name } url={ url } onDestroy={ onDestroy }/>
-      <TagsContainer linkId={ id }/>
+      <TagsContainer linkId={ id } tags={ tags } addTag={ addTag } removeTag= { removeTag }/>
     </div>
   )
 }
@@ -22,7 +22,9 @@ LinkBox.propTypes = {
       name: PropTypes.string
     })
   ),
-  onDestroy: PropTypes.func
+  onDestroy: PropTypes.func.isRequired,
+  addTag: PropTypes.func.isRequired,
+  removeTag: PropTypes.func.isRequired
 }
 
 export default LinkBox

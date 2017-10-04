@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Tag from './Tag'
 
-const TagList = ({ tags, onDestroy }) => {
+const TagList = ({ linkId, tags, onDestroy }) => {
   const toRender = tags.map( (tag, index) => (
-    <Tag name={ tag.name } linkId= { tag.linkId } key={ tag.linkId + index } onDestroy={ onDestroy }/>
+    <Tag name={ tag.name } linkId= { linkId } key={ linkId + index } onDestroy={ onDestroy }/>
   ))
 
   return (<div className="tag-list">{ toRender }</div>)
 }
 
 TagList.propTypes = {
+  linkId: PropTypes.string,
   tags: PropTypes.arrayOf(
     PropTypes.shape({
-      linkId: PropTypes.string,
       name: PropTypes.string
     })
   ).isRequired,

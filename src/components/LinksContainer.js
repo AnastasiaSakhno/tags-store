@@ -12,6 +12,8 @@ class LinksContainer extends PureComponent {
     loadLinks: PropTypes.func.isRequired,
     addLink: PropTypes.func.isRequired,
     removeLink: PropTypes.func.isRequired,
+    addTag: PropTypes.func.isRequired,
+    removeTag: PropTypes.func.isRequired,
     links: PropTypes.array.isRequired
   }
 
@@ -23,7 +25,7 @@ class LinksContainer extends PureComponent {
     return (
       <div className="links-container">
         <LinkForm onLinkSubmit={ this.props.addLink }/>
-        <LinkList data={ this.props.links } onDestroy={ this.props.removeLink }/>
+        <LinkList data={ this.props.links } onDestroy={ this.props.removeLink } addTag={ this.props.addTag } removeTag= { this.props.removeTag } />
       </div>
     )
   }
@@ -42,6 +44,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeLink: (link) => {
     dispatch(actions.links.remove(link))
+  },
+  addTag: (tag) => {
+    dispatch(actions.links.addTag(tag))
+  },
+  removeTag: (tag) => {
+    dispatch(actions.links.removeTag(tag))
   }
 })
 

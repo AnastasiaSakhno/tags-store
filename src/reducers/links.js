@@ -14,6 +14,22 @@ const links = (state = [], action) => {
     case actionTypes.LINK_REMOVED_SUCCESSFULLY:
       return state.filter( (link) => { return link.id !== action.link.id } )
 
+    case actionTypes.ADD_TAG:
+      return state.map((link) => {
+        if (link.id === action.tag.linkId) {
+          return { ...link, tags: [...link.tags, { name: action.tag.name }] }
+        }
+        return link
+      })
+
+    case actionTypes.TAG_REMOVED_SUCCESSFULLY:
+      return state.map((link) => {
+        if (link.id === action.tag.linkId) {
+          return { ...link, tags: link.tags.filter( (tag) => { return tag.name !== action.tag.name } ) }
+        }
+        return link
+      })
+
     default:
       return state
   }

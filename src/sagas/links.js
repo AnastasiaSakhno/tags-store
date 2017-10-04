@@ -11,11 +11,7 @@ export function* loadLinks() {
 }
 
 export function* addLink({ link }) {
-  // do not store tags in links table
-  yield call(saveLink, Object.assign({}, link, {
-    tags: null
-  }))
-  yield call(saveTags, link)
+  yield call(saveLink, link)
 }
 
 export function* removeLink({ link }) {
