@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import uniqId from '../utils/uniq-id'
 
 class LinkForm extends Component {
@@ -20,7 +21,7 @@ class LinkForm extends Component {
       return { name: tagName }
     })
 
-    this.props.onLinkSubmit({ id: id, name: name, url: url, tags: tags, archive: false })
+    this.props.onLinkSubmit({ id: id, name: name, url: url, tags: tags, archive: false, uid: this.props.user.uid })
 
     this.urlInput.value = this.nameInput.value = this.tagsInput.value = ''
   }
@@ -40,4 +41,9 @@ class LinkForm extends Component {
   }
 }
 
-export default LinkForm
+
+const mapStateToProps = (state) => ({
+  user: state.session.user
+})
+
+export default connect(mapStateToProps)(LinkForm)
