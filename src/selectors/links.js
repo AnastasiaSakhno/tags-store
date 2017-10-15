@@ -2,10 +2,18 @@ import { createSelector } from 'reselect'
 
 const getArchiveFilter = (state) => state.filters.archive
 const getTextFilter = (state) => state.filters.text
+const getUser = (state) => state.session.user
 const getLinks = (state) => state.links
 
+export const filteredByUser = createSelector(
+  [getUser, getLinks],
+  (user, links) => {
+    return links.filter( (link) => link.uid === user.uid )
+  }
+)
+
 export const filteredByArchive = createSelector(
-  [getArchiveFilter, getLinks],
+  [getArchiveFilter, filteredByUser],
   (archiveFilter, links) => {
     return archiveFilter ? links : links.filter( (link) => !link.archive )
   }
