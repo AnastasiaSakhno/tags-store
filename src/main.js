@@ -1,27 +1,27 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 import 'babel-polyfill'
-import { createStore, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import logger from 'redux-logger'
-import { initializeFirebase } from './utils/firebase'
-import sagas from './sagas'
+import { Provider } from 'react-redux'
 import reducers from './reducers'
-import RootBox from './components/RootBox'
+import logger from 'redux-logger'
+import { createStore, applyMiddleware, compose } from 'redux'
+import { sessionService } from 'redux-react-session'
+import createSagaMiddleware from 'redux-saga'
+import App from './components/App'
+import sagas from './sagas'
 import './main.scss'
-
-initializeFirebase()
 
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(reducers, compose(applyMiddleware(sagaMiddleware, logger)))
 
+sessionService.initSessionService(store)
+
 sagaMiddleware.run(sagas)
 
 ReactDOM.render(
   <Provider store={ store }>
-    <RootBox/>
+    <App/>
   </Provider>,
   document.getElementById('root')
 )
