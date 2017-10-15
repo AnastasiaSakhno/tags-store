@@ -10,3 +10,7 @@ export const TAG_REMOVED_SUCCESSFULLY = 'TAG_REMOVED_SUCCESSFULLY'
 
 export const TOGGLE_ARCHIVE = 'TOGGLE_ARCHIVE'
 export const SEARCH_BY_TEXT = 'SEARCH_BY_TEXT'
+
+export const LOGIN = 'LOGIN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGOUT = 'LOGOUT'
