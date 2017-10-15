@@ -10,11 +10,10 @@ const config = {
 }
 
 // TODO: separate with three files: firebase, links, tags
+export const firebaseApp = firebase.initializeApp(config)
 
-export const initializeFirebase = () => firebase.initializeApp(config)
-
-const db = () => firebase.database()
-const ref = (tableName) => db().ref(tableName)
+const db = firebase.database()
+const ref = (tableName) => db.ref(tableName)
 const linksTableName = '/links'
 const tagsTableName = '/tags'
 
