@@ -19,9 +19,9 @@ function* login({ user }) {
 }
 
 function* loginSuccess({ user, data }) {
-  sessionService.saveSession({ token: data.refreshToken })
-  sessionService.saveUser(data)
-  user.history.replace('/')
+  yield call(sessionService.saveSession, { token: data.refreshToken })
+  yield call(sessionService.saveUser, data)
+  yield call(user.history.replace, '/')
 }
 
 function* logout() {
