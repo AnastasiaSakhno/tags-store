@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { logout } from '../actions/auth'
 
 const LogoutButton = ({ logout }) => (
-  <button onClick={() => logout(history)}>Logout</button>
+  <button onClick={ logout }>Logout</button>
 )
 
 LogoutButton.propTypes = ({
