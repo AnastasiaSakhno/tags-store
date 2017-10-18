@@ -8,17 +8,17 @@ import LogoutButton from './LogoutButton'
 
 const Home = ({ logout, user, authenticated }) => (
   <div>
-    <h3>Welcome { user.email }</h3>
+    <h3>Welcome { user ? user.email : 'You need to sign in.' }</h3>
     <LogoutButton/>
     <RootBox/>
   </div>
 )
 
-const { object, bool } = PropTypes
+const { object, bool, func } = PropTypes
 
 Home.propTypes = {
-  actions: object.isRequired,
-  user: object.isRequired,
+  logout: func,
+  user: object,
   authenticated: bool.isRequired
 }
 

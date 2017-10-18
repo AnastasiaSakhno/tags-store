@@ -21,7 +21,7 @@ function* login({ user }) {
 function* loginSuccess({ user, data }) {
   yield call(sessionService.saveSession, { token: data.refreshToken })
   yield call(sessionService.saveUser, data)
-  yield call(user.history.replace, '/')
+  yield call(browserHistory.replace, '/')
 }
 
 function* logout() {

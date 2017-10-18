@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import { logout } from '../actions/auth'
 
 const LogoutButton = ({ logout }) => (
@@ -18,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(withRouter(LogoutButton))
+export default connect(null, mapDispatchToProps)(LogoutButton)

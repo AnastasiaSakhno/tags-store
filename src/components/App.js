@@ -1,32 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
-import Home from './Home'
-import Login from './Login'
-import PrivateRoute from './PrivateRoute'
 
-const App = ({ authenticated, checked }) => (
-  <Router>
-    { checked &&
-      <div>
-        <PrivateRoute exact path="/" component={ Home } authenticated={ authenticated }/>
-        <Route path="/login" component={ Login }/>
-      </div>
-    }
-  </Router>
+const App = ({ children }) => (
+  <div>
+    {children}
+  </div>
 )
 
-const { bool } = PropTypes
+const { object } = PropTypes
 
 App.propTypes = {
-  authenticated: bool.isRequired,
-  checked: bool.isRequired
+  children: object.isRequired
 }
 
-const mapStateToProps = ({ session }) => ({
-  checked: session.checked,
-  authenticated: session.authenticated
-})
-
-export default connect(mapStateToProps)(App)
+export default App

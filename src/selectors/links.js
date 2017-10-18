@@ -8,7 +8,7 @@ const getLinks = (state) => state.links
 export const filteredByUser = createSelector(
   [getUser, getLinks],
   (user, links) => {
-    return links.filter( (link) => link.uid === user.uid )
+    return links.filter( (link) => user && link.uid === user.uid )
   }
 )
 
