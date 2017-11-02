@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as sessionActions from '../actions/auth'
+import { Redirect } from 'react-router'
 
 class Login extends Component {
   static propTypes = {
@@ -28,6 +29,9 @@ class Login extends Component {
 
   render() {
     return (
+      this.props.authenticated ?
+      <Redirect to='/'/>
+      :
       <div className="login-box">
         <input type="email" placeholder="Email" ref={ (el) => { this.emailInput = el } }/>
         <input type="password" placeholder="Password" ref={ (el) => { this.passwordInput = el } }/>
@@ -37,10 +41,22 @@ class Login extends Component {
   }
 }
 
+const { object, bool } = PropTypes
+
+Login.propTypes = {
+  user: object,
+  authenticated: bool.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  user: state.session.user,
+  authenticated: state.session.authenticated
+})
+
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(sessionActions, dispatch)
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
