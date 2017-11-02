@@ -4,7 +4,7 @@ import Filters from './Filters'
 
 const RootBox = () => {
   return (
-    <div className="container-fluid">
+    <div className="root-box">
       <Filters/>
       <LinksContainer/>
     </div>
