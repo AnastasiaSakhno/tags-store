@@ -12,7 +12,12 @@ const links = (state = [], action) => {
       ]
 
     case actionTypes.LINK_REMOVED_SUCCESSFULLY:
-      return state.filter( (link) => { return link.id !== action.link.id } )
+      return state.map((link) => {
+        if (link.id === action.link.id) {
+          return { ...link, archive: true }
+        }
+        return link
+      })
 
     case actionTypes.ADD_TAG:
       return state.map((link) => {
