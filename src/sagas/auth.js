@@ -4,7 +4,6 @@ import actions from '../actions'
 import ReduxSagaFirebase from 'redux-saga-firebase'
 import { sessionService } from 'redux-react-session'
 import { firebaseApp } from '../utils/firebase'
-import { browserHistory } from 'react-router'
 
 const reduxSagaFirebase = new ReduxSagaFirebase(firebaseApp)
 
@@ -21,17 +20,14 @@ function* login({ user }) {
 function* loginSuccess({ user, data }) {
   yield call(sessionService.saveSession, { token: data.refreshToken })
   yield call(sessionService.saveUser, data)
-  yield call(browserHistory.replace, '/')
 }
 
 function* logout() {
   const data = yield call(reduxSagaFirebase.auth.signOut)
-  sessionService.deleteSession()
-  sessionService.saveUser(data)
-  browserHistory.replace('/login')
+  yield call(sessionService.deleteSession)
 }
 
-export default function* watchAuth() {
+export default function* watchAuth(context) {
   yield [
     takeEvery(actionTypes.LOGIN, login),
     takeEvery(actionTypes.LOGIN_SUCCESS, loginSuccess),
