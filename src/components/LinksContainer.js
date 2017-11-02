@@ -6,19 +6,22 @@ import LinkList from './LinkList'
 import LinkForm from './LinkForm'
 import selectors from '../selectors'
 
+const { bool, array, func } = PropTypes
 
 class LinksContainer extends PureComponent {
   static propTypes = {
-    loadLinks: PropTypes.func.isRequired,
-    addLink: PropTypes.func.isRequired,
-    removeLink: PropTypes.func.isRequired,
-    addTag: PropTypes.func.isRequired,
-    removeTag: PropTypes.func.isRequired,
-    links: PropTypes.array.isRequired
+    loadLinks: func.isRequired,
+    addLink: func.isRequired,
+    removeLink: func.isRequired,
+    addTag: func.isRequired,
+    removeTag: func.isRequired,
+    links: array.isRequired,
+    authenticated: bool.isRequired
   }
 
   componentDidMount() {
-    this.props.loadLinks()
+    if(this.props.authenticated)
+      this.props.loadLinks()
   }
 
   render() {
@@ -32,7 +35,8 @@ class LinksContainer extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  links: selectors.links.filtered(state)
+  links: selectors.links.filtered(state),
+  authenticated: state.session.authenticated
 })
 
 const mapDispatchToProps = (dispatch) => ({
