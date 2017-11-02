@@ -14,19 +14,27 @@ class Link extends Component {
   }
 
   render() {
+    let icon = <IconButton icon={ 'fa-remove ' } onSubmit={ this.handleDestroy } />
+    if(this.props.archive) {
+      icon = ''
+    }
+
     return (
       <div className="link">
         Name: { this.props.name }, URL: { this.props.url }
-        <IconButton icon={ 'fa-remove ' } onSubmit={ this.handleDestroy } />
+        { icon }
       </div>
     )
   }
 }
 
+const { string, bool } = PropTypes
+
 Link.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  url: PropTypes.string.isRequired
+  id: string,
+  name: string,
+  url: string.isRequired,
+  archive: bool.isRequired
 }
 
 export default Link
