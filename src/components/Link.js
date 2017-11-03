@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import IconButton from './IconButton'
 
 class Link extends Component {
-
   static propTypes = {
     onDestroy: PropTypes.func.isRequired
   }
@@ -20,7 +19,7 @@ class Link extends Component {
     }
 
     return (
-      <div className="link">
+      <div className='link'>
         Name: { this.props.name }, URL: { this.props.url }
         { icon }
       </div>

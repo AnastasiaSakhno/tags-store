@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Tag from './Tag'
 
 const TagList = ({ linkId, tags, onDestroy }) => {
-  const toRender = tags.map( (tag, index) => (
+  const toRender = tags.map((tag, index) => (
     <Tag name={ tag.name } linkId= { linkId } key={ linkId + index } onDestroy={ onDestroy }/>
   ))
 

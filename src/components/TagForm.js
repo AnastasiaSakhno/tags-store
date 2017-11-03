@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class TagForm extends Component {
-
   static propTypes = {
     onTagSubmit: PropTypes.func.isRequired
   }
@@ -22,9 +21,9 @@ class TagForm extends Component {
 
   render() {
     return (
-      <form className="tag-form" onSubmit={ this.handleSubmit }>
-        <input type="text" placeholder="Tag name" ref={ (el) => { this.tagNameInput = el } }/>
-        <input type="submit" value="Add tag"/>
+      <form className='tag-form' onSubmit={ this.handleSubmit }>
+        <input type='text' placeholder='Tag name' ref={ (el) => { this.tagNameInput = el } }/>
+        <input type='submit' value='Add tag'/>
       </form>
     )
   }

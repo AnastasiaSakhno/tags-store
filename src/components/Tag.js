@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import IconButton from './IconButton'
 
 class Tag extends Component {
-
   static propTypes = {
     onDestroy: PropTypes.func.isRequired
   }
@@ -15,7 +14,7 @@ class Tag extends Component {
 
   render() {
     return (
-      <span className="tag">
+      <span className='tag'>
         { this.props.name }
         <IconButton icon={ 'fa-remove ' } onSubmit={ this.handleDestroy } />
       </span>

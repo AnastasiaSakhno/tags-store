@@ -52,7 +52,7 @@ app.use('*', (req, res, next) => {
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="/css/main.css">
             <script src="/bundle.js" defer></script>
-            <script>window.__initialData__ = ${serialize(initialData)}</script>
+            <script>window.initialData = ${serialize(initialData)}</script>
           </head>
 
           <body>

@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import RootBox from './RootBox'
 import LogoutButton from './LogoutButton'
-import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 
 class Home extends Component {
-
   render() {
     return (
       this.props.authenticated ?
-      <div className='home'>
-        <h3>Welcome, { this.props.user.email }</h3>
-        <LogoutButton/>
-        <hr/>
-        <RootBox/>
-      </div>
-      :
-      <Redirect to='/login'/>
+        <div className='home'>
+          <h3>Welcome, { this.props.user.email }</h3>
+          <LogoutButton/>
+          <hr/>
+          <RootBox/>
+        </div>
+        :
+        <Redirect to='/login'/>
     )
   }
 }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import uniqId from '../utils/uniq-id'
 
 class LinkForm extends Component {
-
   static propTypes = {
     onLinkSubmit: PropTypes.func.isRequired
   }
@@ -13,11 +12,13 @@ class LinkForm extends Component {
     e.preventDefault()
 
     const url = this.urlInput.value.trim()
-    if(!url) { return }
+    if(!url) {
+      return
+    }
 
     const id = uniqId()
     const name = this.nameInput.value.trim()
-    const tags = this.tagsInput.value.replace(/ /g, '').split(',').map( (tagName) => {
+    const tags = this.tagsInput.value.replace(/ /g, '').split(',').map((tagName) => {
       return { name: tagName }
     })
 
@@ -39,6 +40,10 @@ class LinkForm extends Component {
       </div>
     )
   }
+}
+
+LinkForm.propTypes = {
+  user: PropTypes.object.isRequired
 }
 
 

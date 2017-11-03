@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { logout } from '../actions/auth'
+import actions from '../actions'
 
 const LogoutButton = ({ logout }) => (
   <button onClick={ logout }>Logout</button>
@@ -13,7 +13,7 @@ LogoutButton.propTypes = ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => {
-    dispatch(logout())
+    dispatch(actions.auth.logout())
   }
 })
 

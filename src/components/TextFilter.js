@@ -7,7 +7,7 @@ class TextFilter extends Component {
     onSubmit: PropTypes.func.isRequired
   }
 
-  onSubmitHandler = (e) => {
+  onSubmitHandler = () => {
     const text = this.filterInput.value.trim()
     this.props.onSubmit(text)
   }
@@ -15,7 +15,12 @@ class TextFilter extends Component {
   render() {
     return (
       <div className='text-filter'>
-        <input type='text' value={ this.text } placeholder='Filter by link or tag' onChange={ this.onSubmitHandler } ref={ el => { this.filterInput = el } }/>
+        <input
+          type='text'
+          value={ this.text }
+          placeholder='Filter by link or tag'
+          onChange={ this.onSubmitHandler }
+          ref={ el => { this.filterInput = el } }/>
       </div>
     )
   }

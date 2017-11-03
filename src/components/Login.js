@@ -30,13 +30,13 @@ class Login extends Component {
   render() {
     return (
       this.props.authenticated ?
-      <Redirect to='/'/>
-      :
-      <div className="login-box">
-        <input type="email" placeholder="Email" ref={ (el) => { this.emailInput = el } }/>
-        <input type="password" placeholder="Password" ref={ (el) => { this.passwordInput = el } }/>
-        <input type="submit" value="Login" onClick={ this.handleSubmit }/>
-      </div>
+        <Redirect to='/'/>
+        :
+        <div className="login-box">
+          <input type="email" placeholder="Email" ref={ (el) => { this.emailInput = el } }/>
+          <input type="password" placeholder="Password" ref={ (el) => { this.passwordInput = el } }/>
+          <input type="submit" value="Login" onClick={ this.handleSubmit }/>
+        </div>
     )
   }
 }

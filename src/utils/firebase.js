@@ -15,12 +15,11 @@ export const firebaseApp = firebase.initializeApp(config)
 const db = firebase.database()
 const ref = (tableName) => db.ref(tableName)
 const linksTableName = '/links'
-const tagsTableName = '/tags'
 
 export const snapshotToArray = (snapshot) => {
   const arrayToReturn = []
 
-  snapshot.forEach( (item) => {
+  snapshot.forEach((item) => {
     arrayToReturn.push(item.val())
   })
 
@@ -35,19 +34,19 @@ export const saveLink = (link) => {
 }
 
 export const saveTag = (tag) => {
-  ref(linksTableName).orderByChild('id').equalTo(tag.linkId).once('child_added', function(snapshot) {
+  ref(linksTableName).orderByChild('id').equalTo(tag.linkId).once('child_added', (snapshot) => {
     snapshot.ref.update({ tags: [...snapshot.val().tags, tag] })
   })
 }
 
 export const destroyTag = (tag) => {
-  ref(linksTableName).orderByChild('id').equalTo(tag.linkId).on('child_added', function(snapshot) {
-    snapshot.ref.update({ tags: snapshot.val().tags.filter( (t) => { return t.name !== tag.name }) })
+  ref(linksTableName).orderByChild('id').equalTo(tag.linkId).on('child_added', (snapshot) => {
+    snapshot.ref.update({ tags: snapshot.val().tags.filter((t) => { return t.name !== tag.name }) })
   })
 }
 
 export const destroyLink = (link) => {
-  ref(linksTableName).orderByChild('id').equalTo(link.id).once('child_added', function(snapshot) {
+  ref(linksTableName).orderByChild('id').equalTo(link.id).once('child_added', (snapshot) => {
     snapshot.ref.update({ archive: true })
   })
 }

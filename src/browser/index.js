@@ -7,9 +7,10 @@ import { sessionService } from 'redux-react-session'
 import App from '../components/App'
 import '../main.scss'
 
-const store = configureStore(false, window.__initialData__)
+const store = configureStore(false, window.initialData)
 
-sessionService.initSessionService(store, { refreshOnCheckAuth: true, redirectPath: '/', driver: 'COOKIES' })
+sessionService.initSessionService(store,
+  { refreshOnCheckAuth: true, redirectPath: '/', driver: 'COOKIES' })
 
 ReactDOM.render(
   <Provider store={ store }>
@@ -17,5 +18,5 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 )

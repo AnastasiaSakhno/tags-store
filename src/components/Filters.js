@@ -5,10 +5,12 @@ import actions from '../actions'
 import ArchiveFilter from './ArchiveFilter'
 import TextFilter from './TextFilter'
 
+const { func, object } = PropTypes
+
 class Filters extends Component {
   static propTypes = {
-    toggleArchive: PropTypes.func.isRequired,
-    searchByText: PropTypes.func.isRequired
+    toggleArchive: func.isRequired,
+    searchByText: func.isRequired
   }
 
   render() {
@@ -22,6 +24,10 @@ class Filters extends Component {
       </div>
     )
   }
+}
+
+Filters.propTypes = {
+  filters: object.isRequired
 }
 
 const mapStateToProps = (state) => ({

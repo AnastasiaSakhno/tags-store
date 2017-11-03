@@ -1,5 +1,5 @@
-import { takeLatest, takeEvery, call, put } from 'redux-saga/effects'
-import { snapshotToArray, saveTag, destroyTag } from '../utils/firebase'
+import { takeEvery, call, put } from 'redux-saga/effects'
+import { saveTag, destroyTag } from '../utils/firebase'
 import * as actionTypes from '../actions/types'
 import actions from '../actions'
 

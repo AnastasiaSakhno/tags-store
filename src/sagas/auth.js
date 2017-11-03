@@ -17,17 +17,17 @@ function* login({ user }) {
   }
 }
 
-function* loginSuccess({ user, data }) {
+function* loginSuccess({ data }) {
   yield call(sessionService.saveSession, { token: data.refreshToken })
   yield call(sessionService.saveUser, data)
 }
 
 function* logout() {
-  const data = yield call(reduxSagaFirebase.auth.signOut)
+  yield call(reduxSagaFirebase.auth.signOut)
   yield call(sessionService.deleteSession)
 }
 
-export default function* watchAuth(context) {
+export default function* watchAuth() {
   yield [
     takeEvery(actionTypes.LOGIN, login),
     takeEvery(actionTypes.LOGIN_SUCCESS, loginSuccess),

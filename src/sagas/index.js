@@ -2,10 +2,10 @@ import watchLinks from './links'
 import watchTags from './tags'
 import watchAuth from './auth'
 
-export default function *rootSaga(context) {
+export default function* rootSaga() {
   yield [
-    watchLinks(context),
-    watchTags(context),
-    watchAuth(context)
+    watchLinks(),
+    watchTags(),
+    watchAuth()
   ]
 }

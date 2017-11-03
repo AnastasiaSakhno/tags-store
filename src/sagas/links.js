@@ -1,5 +1,5 @@
 import { takeLatest, takeEvery, put, call } from 'redux-saga/effects'
-import { snapshotToArray, getLinks, saveLink, getTagsFor, saveTags, destroyLink } from '../utils/firebase'
+import { snapshotToArray, getLinks, saveLink, destroyLink } from '../utils/firebase'
 import actions from '../actions'
 import * as actionTypes from '../actions/types'
 

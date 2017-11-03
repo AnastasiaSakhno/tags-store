@@ -20,15 +20,20 @@ class LinksContainer extends PureComponent {
   }
 
   componentDidMount() {
-    if(this.props.authenticated)
+    if(this.props.authenticated) {
       this.props.loadLinks()
+    }
   }
 
   render() {
     return (
       <div className="links-container">
         <LinkForm onLinkSubmit={ this.props.addLink }/>
-        <LinkList data={ this.props.links } onDestroy={ this.props.removeLink } addTag={ this.props.addTag } removeTag= { this.props.removeTag } />
+        <LinkList
+          data={ this.props.links }
+          onDestroy={ this.props.removeLink }
+          addTag={ this.props.addTag }
+          removeTag= { this.props.removeTag } />
       </div>
     )
   }

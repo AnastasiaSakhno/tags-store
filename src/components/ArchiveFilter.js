@@ -7,7 +7,7 @@ class ArchiveFilter extends Component {
     onToggle: PropTypes.func.isRequired
   }
 
-  onToggleHandler = (e) => {
+  onToggleHandler = () => {
     this.props.onToggle()
   }
 
