@@ -13,4 +13,5 @@ export const SEARCH_BY_TEXT = 'SEARCH_BY_TEXT'
 
 export const LOGIN = 'LOGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
 export const LOGOUT = 'LOGOUT'

@@ -8,16 +8,16 @@ import { firebaseApp } from '../utils/firebase'
 const reduxSagaFirebase = new ReduxSagaFirebase(firebaseApp)
 
 function* login({ user }) {
+  let data
   try {
-    const data = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, user.email, user.password)
-    yield put(actions.auth.loginSuccess(user, data))
+    data = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, user.email, user.password)
+    yield put(actions.auth.loggedInSuccessfully(data))
   } catch(error) {
-    // TODO new action
-    console.log(error)
+    yield put(actions.auth.loginFailed(error))
   }
 }
 
-function* loginSuccess({ data }) {
+function* loggedInSuccessfully({ data }) {
   yield call(sessionService.saveSession, { token: data.refreshToken })
   yield call(sessionService.saveUser, data)
 }
@@ -30,7 +30,7 @@ function* logout() {
 export default function* watchAuth() {
   yield [
     takeEvery(actionTypes.LOGIN, login),
-    takeEvery(actionTypes.LOGIN_SUCCESS, loginSuccess),
+    takeEvery(actionTypes.LOGIN_SUCCESS, loggedInSuccessfully),
     takeEvery(actionTypes.LOGOUT, logout)
   ]
 }

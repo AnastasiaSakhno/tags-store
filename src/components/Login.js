@@ -28,14 +28,34 @@ class Login extends Component {
   }
 
   render() {
+    let error = this.props.error ?
+      <span className='help-block'>{ this.props.error.message }</span> : ''
+
     return (
       this.props.authenticated ?
         <Redirect to='/'/>
         :
-        <div className="login-box">
-          <input type="email" placeholder="Email" ref={ (el) => { this.emailInput = el } }/>
-          <input type="password" placeholder="Password" ref={ (el) => { this.passwordInput = el } }/>
-          <input type="submit" value="Login" onClick={ this.handleSubmit }/>
+        <div className='login-box'>
+          <form className='form-horizontal'>
+            <div className='control-group'>
+              <label>Email</label>
+              <div className='controls'>
+                <input type='email' ref={ (el) => { this.emailInput = el } }/>
+              </div>
+              { error }
+            </div>
+            <div className='control-group'>
+              <label>Password</label>
+              <div className='controls'>
+                <input type='password' ref={ (el) => { this.passwordInput = el } }/>
+              </div>
+            </div>
+            <div className='control-group'>
+              <div className='controls'>
+                <input type='submit' value='Sign In' onClick={ this.handleSubmit }/>
+              </div>
+            </div>
+          </form>
         </div>
     )
   }
@@ -45,12 +65,14 @@ const { object, bool } = PropTypes
 
 Login.propTypes = {
   user: object,
-  authenticated: bool.isRequired
+  authenticated: bool.isRequired,
+  error: object
 }
 
 const mapStateToProps = (state) => ({
   user: state.session.user,
-  authenticated: state.session.authenticated
+  authenticated: state.session.authenticated,
+  error: state.auth.error
 })
 
 const mapDispatchToProps = (dispatch) => {
