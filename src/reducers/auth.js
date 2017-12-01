@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/types'
 
-const initialState = { error: null }
+export const initialState = { error: null }
 
 const auth = (state = initialState, action) => {
   switch(action.type) {

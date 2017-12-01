@@ -1,6 +1,8 @@
 import * as actionTypes from '../actions/types'
 
-const links = (state = [], action) => {
+export const initialState = []
+
+const links = (state = initialState, action) => {
   switch(action.type) {
   case actionTypes.LINKS_LOADED:
     return [...action.links]

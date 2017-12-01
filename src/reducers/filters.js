@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/types'
 
-const initialState = { archive: false, text: '' }
+export const initialState = { archive: false, text: '' }
 
 const filters = (state = initialState, action) => {
   switch(action.type) {
