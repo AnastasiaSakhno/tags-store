@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=development webpack -w & nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "NODE_ENV=development webpack --progress",
     "watch": "NODE_ENV=development webpack --progress --watch & nodemon server.js",
     "prepare": "npm run build",
@@ -62,6 +62,7 @@
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-polyfill": "^6.26.0",
@@ -72,6 +73,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "eslint": "^4.4.1",
     "eslint-plugin-react": "^7.2.1",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.1",
     "webpack": "^3.5.4"
   }
