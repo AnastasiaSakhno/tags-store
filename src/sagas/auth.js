@@ -6,25 +6,31 @@ import { sessionService } from 'redux-react-session'
 import { firebaseApp } from '../utils/firebase'
 
 const reduxSagaFirebase = new ReduxSagaFirebase(firebaseApp)
+export const fbSignIn = reduxSagaFirebase.auth.signInWithEmailAndPassword
+export const fbSignOut = reduxSagaFirebase.auth.signOut
+export const deleteSession = sessionService.deleteSession
+export const saveSession = sessionService.saveSession
+export const saveUser = sessionService.saveUser
 
 function* login({ user }) {
+export function* login({ user }) {
   let data
   try {
-    data = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, user.email, user.password)
+    data = yield call(fbSignIn, user.email, user.password)
     yield put(actions.auth.loggedInSuccessfully(data))
   } catch(error) {
     yield put(actions.auth.loginFailed(error))
   }
 }
 
-function* loggedInSuccessfully({ data }) {
-  yield call(sessionService.saveSession, { token: data.refreshToken })
-  yield call(sessionService.saveUser, data)
+export function* loggedInSuccessfully({ data }) {
+  yield call(saveSession, { token: data.refreshToken })
+  yield call(saveUser, data)
 }
 
-function* logout() {
-  yield call(reduxSagaFirebase.auth.signOut)
-  yield call(sessionService.deleteSession)
+export function* logout() {
+  yield call(fbSignOut)
+  yield call(deleteSession)
 }
 
 export default function* watchAuth() {

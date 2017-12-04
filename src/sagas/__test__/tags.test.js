@@ -1,20 +1,20 @@
 import { call, put } from 'redux-saga/effects'
 import { saveTag, destroyTag } from '../../utils/firebase'
-import * as actionTypes from '../../actions/types'
 import actions from '../../actions'
 import { addTag, removeTag } from '../tags'
 import uniqId from '../../utils/uniq-id'
 
 describe('tags saga', () => {
+  const linkId = uniqId()
+  const tag = {
+    linkId: linkId,
+    name: 'three'
+  }
+  const action = {
+    tag: tag
+  }
+
   describe('addTag', () => {
-    const linkId = uniqId()
-    const tag = {
-      linkId: linkId,
-      name: 'three'
-    }
-    const action = {
-      tag: tag
-    }
     const generator = addTag(action)
 
     it('calls saveTag', () => {
@@ -23,14 +23,6 @@ describe('tags saga', () => {
   })
 
   describe('removeTag', () => {
-    const linkId = uniqId()
-    const tag = {
-      linkId: linkId,
-      name: 'three'
-    }
-    const action = {
-      tag: tag
-    }
     const generator = removeTag(action)
 
     it('calls destroyTag', () => {
