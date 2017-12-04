@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="tag-list"
+>
+  <span
+    className="tag"
+  >
+    one
+    <span
+      className="iconbutton-box"
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-remove "
+      />
+    </span>
+  </span>
+  <span
+    className="tag"
+  >
+    two
+    <span
+      className="iconbutton-box"
+      onClick={[Function]}
+    >
+      <i
+        className="fa fa-remove "
+      />
+    </span>
+  </span>
+</div>
+`;
