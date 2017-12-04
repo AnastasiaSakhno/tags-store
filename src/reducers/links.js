@@ -24,7 +24,7 @@ const links = (state = initialState, action) => {
   case actionTypes.ADD_TAG:
     return state.map((link) => {
       if (link.id === action.tag.linkId) {
-        return { ...link, tags: [...link.tags, { name: action.tag.name }] }
+        return { ...link, tags: [...link.tags, { linkId: action.tag.linkId, name: action.tag.name }] }
       }
       return link
     })

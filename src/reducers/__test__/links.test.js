@@ -2,11 +2,15 @@ import * as actionTypes from '../../actions/types'
 import links, { initialState } from '../links'
 import uniqId from '../../utils/uniq-id'
 
+const linkId = uniqId()
 const testLink = {
-  id: uniqId(),
+  id: linkId,
   name: 'test link',
   url: 'https://test.link.ua',
-  tags: [{ name: 'one' }, { name: 'two' }],
+  tags: [
+    { linkId: linkId, name: 'one' },
+    { linkId: linkId, name: 'two' }
+  ],
   archive: false
 }
 
@@ -48,7 +52,11 @@ describe('links reducer', () => {
         name: 'three'
       }
     })
-    expect(state).toEqual([{ ...testLink, tags: [{ name: 'one' }, { name: 'two' }, { name: 'three' }] }])
+    expect(state).toEqual([{ ...testLink, tags: [
+      { linkId: linkId, name: 'one' },
+      { linkId: linkId, name: 'two' },
+      { linkId: linkId, name: 'three' }
+    ] }])
   })
 
   it('removes tag', () => {
@@ -59,6 +67,6 @@ describe('links reducer', () => {
         name: 'two'
       }
     })
-    expect(state).toEqual([{ ...testLink, tags: [{ name: 'one' }] }])
+    expect(state).toEqual([{ ...testLink, tags: [{ linkId: linkId, name: 'one' }] }])
   })
 })
