@@ -17,7 +17,7 @@ describe('tags saga', () => {
   describe('addTag', () => {
     const generator = addTag(action)
 
-    it('calls saveTag', () => {
+    it('saves tag', () => {
       expect(generator.next(tag).value).toEqual(call(saveTag, tag))
     })
   })
@@ -25,11 +25,11 @@ describe('tags saga', () => {
   describe('removeTag', () => {
     const generator = removeTag(action)
 
-    it('calls destroyTag', () => {
+    it('destroys rag', () => {
       expect(generator.next(tag).value).toEqual(call(destroyTag, tag))
     })
 
-    it('puts tagRemovedSuccessfully', () => {
+    it('removes tag from the store', () => {
       expect(generator.next(tag).value).toEqual(put(actions.links.tagRemovedSuccessfully(tag)))
     })
   })

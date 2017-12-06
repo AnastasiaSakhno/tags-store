@@ -29,15 +29,15 @@ describe('links saga', () => {
     const action = {}
     const generator = loadLinks(action)
 
-    it('calls getLinks', () => {
+    it('gets links', () => {
       expect(generator.next().value).toEqual(call(getLinks))
     })
 
-    it('calls snapshotToArray with links snapshot', () => {
+    it('create links array', () => {
       expect(generator.next(linksSnapshot).value).toEqual(call(snapshotToArray, linksSnapshot))
     })
 
-    it('puts links loaded', () => {
+    it('saves links in the store', () => {
       const links = snapshotToArray(linksSnapshot)
       expect(generator.next(links).value).toEqual(put(actions.links.loaded(links)))
     })
@@ -50,7 +50,7 @@ describe('links saga', () => {
     }
     const generator = addLink(action)
 
-    it('calls saveLink', () => {
+    it('saves link', () => {
       expect(generator.next(link).value).toEqual(call(saveLink, link))
     })
   })
@@ -61,11 +61,11 @@ describe('links saga', () => {
     }
     const generator = removeLink(action)
 
-    it('calls destroyLink', () => {
+    it('destroys link', () => {
       expect(generator.next(firstLink).value).toEqual(call(destroyLink, firstLink))
     })
 
-    it('puts removedSuccessfully', () => {
+    it('removes link from the store', () => {
       expect(generator.next(firstLink).value).toEqual(put(actions.links.removedSuccessfully(firstLink)))
     })
   })

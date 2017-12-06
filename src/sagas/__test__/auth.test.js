@@ -14,11 +14,11 @@ describe('auth saga', () => {
     }
     const generator = login(action)
 
-    it('calls signInWithEmailAndPassword', () => {
+    it('signs in user', () => {
       expect(generator.next(user.email, user.password).value).toEqual(call(fbSignIn, user.email, user.password))
     })
 
-    it('puts loggedInSuccessfully', () => {
+    it('saves user session data', () => {
       const data = {}
       expect(generator.next(data).value).toEqual(put(actions.auth.loggedInSuccessfully(data)))
     })
@@ -30,11 +30,11 @@ describe('auth saga', () => {
     const sessionData = { token: data.refreshToken }
     const generator = loggedInSuccessfully(action)
 
-    it('calls saveSession', () => {
+    it('saves token in user session', () => {
       expect(generator.next(sessionData).value).toEqual(call(saveSession, sessionData))
     })
 
-    it('calls saveUser', () => {
+    it('saves users data in session', () => {
       expect(generator.next(data).value).toEqual(call(saveUser, data))
     })
   })
@@ -43,11 +43,11 @@ describe('auth saga', () => {
     const action = {}
     const generator = logout(action)
 
-    it('calls fbSignOut', () => {
+    it('logs out user from firebase', () => {
       expect(generator.next().value).toEqual(call(fbSignOut))
     })
 
-    it('calls deleteSession', () => {
+    it('deletes user session', () => {
       expect(generator.next().value).toEqual(call(deleteSession))
     })
   })
